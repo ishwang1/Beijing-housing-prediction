@@ -1,8 +1,9 @@
 # Unfolding Beijing in a Hedonic Way
 
+This is a public repository accompanying the paper
 * [Wei Lin](http://www.weilinmetrics.com/), [Zhentao Shi](http://www.zhentaoshi.com/), Yishu Wang and Ting Hin Yan: [“Unfolding Beijing in a Hedonic Way”](https://www.researchgate.net/publication/339551353_Unfolding_Beijing_in_a_Hedonic_Way).
 
-This repository contains the data and R scripts for the algorithms in the paper. Please contact Yishu Wang ([wangy@link.cuhk.edu.hk](wangy@link.cuhk.edu.hk)) if you have any questions about the code.
+for access of the data and R scripts. Please contact Yishu Wang ([wangy@link.cuhk.edu.hk](wangy@link.cuhk.edu.hk)) if you have any questions about the code.
 
 ### Code structure
 
