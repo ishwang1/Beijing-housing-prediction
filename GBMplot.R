@@ -1,8 +1,8 @@
 library(caret)
 library(doParallel)
 
-load("Beijing Housing/lianjia.RData")
-load("Beijing Housing/result.RData")
+load("lianjia.RData")
+load("model.tree.RData")
 
 
 # predicting grid
@@ -29,7 +29,7 @@ lianjia.grid=cbind(subset(lianjia.grid,
                    expand.grid(Lng=seq(from=116.08,to=116.71,by=0.01),
                                Lat=seq(from=39.63,to=40.25,by=0.01)))
 
-pred.GBM=predict(result$GBM.model,newdata=lianjia.grid)
+pred.GBM=predict(model.GBM,newdata=lianjia.grid)
 pred.GBM=cbind(lianjia.grid[,c("Lng","Lat")],price=pred.GBM)
 
 

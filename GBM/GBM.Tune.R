@@ -1,14 +1,14 @@
 library(caret)
-library(doParallel)
 
 load("lianjia.RData")
-
 tune_ind=createDataPartition(1:nrow(lianjia),p=0.1)$Resample1
-gbmGrid=expand.grid(interaction.depth=(2:10)*5,
-                    n.trees=(10:200)*100,
+
+gbmGrid=expand.grid(interaction.depth=seq(10:50,by=5),
+                    n.trees=seq(10000,20000,by=100),
                     shrinkage=c(0.001,0.005,0.01,0.05,0.1),
                     n.minobsinnode=20)
 gbmControl=trainControl(method="cv",number=5)
+cl=24
 
 
 # Without Coordinates
@@ -21,18 +21,17 @@ formula.GBM.noc=price~
   subway+district+t_trade+
   communityAverage
 
-tc=Sys.time();cat(paste("Starting Tuning without Coordinates at:",tc),"\n")
-registerDoParallel(24)
+cat(paste("Starting tuning without coordinates at",Sys.time()),"\n")
+doParallel::registerDoParallel(cl)
 Tune.GBM.noc=train(formula.GBM.noc,data=lianjia[tune_ind,],
                    method="gbm",distribution="gaussian",
                    trControl=gbmControl,tuneGrid=gbmGrid,metric="Rsquared",
                    verbose=F)
-stopImplicitCluster()
-tc=Sys.time()-tc;print(tc)
+doParallel::stopImplicitCluster()
 
 gbmTune.noc=Tune.GBM.noc$bestTune
 print(gbmTune.noc)
-print(Tune.GBM.noc$resample)
+print(Tune.GBM.noc$results)
 
 
 # With Coordinates
@@ -45,20 +44,19 @@ formula.GBM=price~
   subway+district+Lng+Lat+t_trade+
   communityAverage
 
-tc=Sys.time();cat(paste("Starting Tuning with Coordinates at:",tc),"\n")
-registerDoParallel(24)
+cat(paste("Starting tuning with coordinates at",Sys.time()),"\n")
+doParallel::registerDoParallel(cl)
 Tune.GBM=train(formula.GBM,data=lianjia[tune_ind,],
                method="gbm",distribution="gaussian",
                trControl=gbmControl,tuneGrid=gbmGrid,metric="Rsquared",
                verbose=F)
-stopImplicitCluster()
-tc=Sys.time()-tc;print(tc)
+doParallel::stopImplicitCluster()
 
 gbmTune=Tune.GBM$bestTune
 print(gbmTune)
 print(Tune.GBM$resample)
 
 
-save(formula.GBM.noc,gbmTune.noc,formula.GBM,gbmTune,file="GBMTune.RData")
+save(gbmTune.noc,gbmTune,file="GBM/GBMTune.RData")
 
 
