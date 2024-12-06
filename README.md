@@ -1,9 +1,11 @@
 # Unfolding Beijing in a Hedonic Way
 
-This is a public repository accompanying the paper
-* [Wei Lin](http://www.weilinmetrics.com/), [Zhentao Shi](http://www.zhentaoshi.com/), Yishu Wang and Ting Hin Yan: [“Unfolding Beijing in a Hedonic Way”](https://www.researchgate.net/publication/339551353_Unfolding_Beijing_in_a_Hedonic_Way).
+This is a public repository accompanying the published paper
+* Wei Lin, Zhentao Shi, Yishu Wang, and Ting Hin Yan (2023): "[Unfolding Beijing in a Hedonic Way](https://link.springer.com/article/10.1007/s10614-021-10209-3)",  *Computational Economics*, 61, 317–340. [[ResearchGate](https://www.researchgate.net/publication/339551353_Unfolding_Beijing_in_a_Hedonic_Way)].
 
-for access of the data and R scripts. Please contact Yishu Wang ([wangy@link.cuhk.edu.hk](wangy@link.cuhk.edu.hk)) if you have any questions about the code.
+for access of the data and R scripts. 
+
+Contact Yishu Wang ([wangy@link.cuhk.edu.hk](wangy@link.cuhk.edu.hk)) if you have any questions about the code.
 
 ### Code structure
 
@@ -48,5 +50,5 @@ for access of the data and R scripts. Please contact Yishu Wang ([wangy@link.cuh
 #### Visualization:
 * `GBMplot.R`: Plotting Figure 3 "GBM prediction on coordinate raster"
 
-Remark: If you want to save time from tuning parameters and trust our tuning results, you can directly run `prediction.R` and `pred_seq.R` to replicate our main results. 
+Remark: If you want to save time from choosing the tuning parameters, you can directly run `prediction.R` and `pred_seq.R` to replicate our main results. 
 
